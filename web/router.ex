@@ -13,10 +13,12 @@ defmodule NewsletterPhoenix.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", NewsletterPhoenix do
-    pipe_through :browser # Use the default browser stack
+  scope "/api", NewsletterPhoenix do
+    pipe_through :api
 
-    get "/", PageController, :index
+    scope "/v1" do
+      post "/registrations", RegistrationController, :create
+    end
   end
 
   # Other scopes may use custom stacks.
