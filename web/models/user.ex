@@ -1,6 +1,7 @@
 defmodule NewsletterPhoenix.User do
   use NewsletterPhoenix.Web, :model
 
+  @derive {Poison.Encoder, only: [:id, :first_name, :last_name, :email]}
   schema "users" do
     field :first_name, :string
     field :last_name, :string
@@ -12,12 +13,11 @@ defmodule NewsletterPhoenix.User do
     timestamps()
   end
 
-  @derive {Poison.Encoder, only: [:id, :first_name, :last_name, :email]}
 
   @required_fields ~w(first_name last_name email password)
   @optional_fields ~w(encrypted_password)
 
-  def changeset(model, params \\ :empty) do
+  def changeset(model, params \\ %{}) do
     model
     |> cast(params, @required_fields, @optional_fields)
     |> validate_format(:email, ~r/@/)
