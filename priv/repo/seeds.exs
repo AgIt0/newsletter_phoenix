@@ -1,6 +1,6 @@
-alias NewsletterPhoenix.{Repo, User}
+alias NewsletterPhoenix.{Repo, User, Category}
 
-[
+users = [
   %{
     first_name: "John",
     last_name: "Doe",
@@ -8,5 +8,14 @@ alias NewsletterPhoenix.{Repo, User}
     password: "exampleOFC"
   },
 ]
-|> Enum.map(&User.changeset(%User{}, &1))
-|> Enum.each(&Repo.insert!(&1))
+
+for user <- users do
+  Repo.get_by(User, email: user.email) ||
+  Repo.insert(User.changeset(%User{}, user))
+end
+
+
+for category <- ~w(Ruby C# JS Others) do
+  Repo.get_by(Category, name: category) ||
+  Repo.insert(%Category{name: category})
+end
