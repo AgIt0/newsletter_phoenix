@@ -25,6 +25,10 @@ defmodule NewsletterPhoenix.Router do
       delete "/sessions", SessionController, :delete
 
       get "/current_user", CurrentUserController, :show
+
+      resources "/newsletters", NewsletterController, only: [:index, :show]
+
+
     end
   end
 end
