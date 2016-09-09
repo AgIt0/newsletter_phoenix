@@ -27,7 +27,9 @@ defmodule NewsletterPhoenix.Router do
       get "/current_user", CurrentUserController, :show
 
       resources "/newsletters", NewsletterController, only: [:index, :show]
-      resources "/links", LinkController, only: [:new]
+
+      resources "/links", LinkController, only: [:create, :index]
+
       resources "/categories", CategoryController, only: [:index]
     end
   end

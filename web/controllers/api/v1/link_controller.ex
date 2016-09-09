@@ -3,6 +3,11 @@ defmodule NewsletterPhoenix.LinkController do
 
   alias NewsletterPhoenix.Link
 
+  def index(conn, _params) do
+    links = Repo.all(Link)
+    render(conn, "index.json", links: links)
+  end
+
   def create(conn, %{"link" => link_params}) do
     changeset = Link.changeset(%Link{}, link_params)
 
@@ -10,7 +15,6 @@ defmodule NewsletterPhoenix.LinkController do
       {:ok, link} ->
         conn
         |> put_status(:created)
-        |> put_resp_header("location", link_path(conn, :show, link))
         |> render("show.json", link: link)
       {:error, changeset} ->
         conn

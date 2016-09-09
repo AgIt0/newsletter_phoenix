@@ -12,12 +12,12 @@ defmodule NewsletterPhoenix.Link do
     timestamps()
   end
 
-  @doc """
-  Builds a changeset based on the `struct` and `params`.
-  """
+  @required_fields ~w(url title user_id category_id)
+  @optional_fields ~w(comment)
+
   def changeset(struct, params \\ %{}) do
     struct
-    |> cast(params, [:url, :comment])
+    |> cast(params, @required_fields, @optional_fields)
     |> validate_required([:url, :comment])
   end
 end
