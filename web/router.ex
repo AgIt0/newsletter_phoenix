@@ -28,6 +28,7 @@ defmodule NewsletterPhoenix.Router do
 
       resources "/newsletters", NewsletterController, only: [:index, :show]
       resources "/links", LinkController, only: [:new]
+      resources "/categories", CategoryController, only: [:index]
     end
   end
 end
