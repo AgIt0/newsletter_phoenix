@@ -9,13 +9,18 @@ defmodule NewsletterPhoenix.LinkController do
   end
 
   def create(conn, %{"link" => link_params}) do
-    changeset = Link.changeset(%Link{}, link_params)
+    user = Guardian.Plug.current_resource(conn)
+
+    changeset =
+      user
+      |> build_assoc(:links)
+      |> Link.changeset(link_params)
 
     case Repo.insert(changeset) do
       {:ok, link} ->
         conn
         |> put_status(:created)
-        |> render("show.json", link: link)
+        |> render("show.json", link: Repo.preload(link, :category))
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

@@ -9,6 +9,7 @@ defmodule NewsletterPhoenix.User do
     field :encrypted_password, :string
     field :password, :string, virtual: true
 
+    has_many :links, NewsletterPhoenix.Link
 
     timestamps()
   end
