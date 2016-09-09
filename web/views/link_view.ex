@@ -14,7 +14,7 @@ defmodule NewsletterPhoenix.LinkView do
       title: link.title,
       url: link.url,
       comment: link.comment,
-      category_id: link.category_id,
+      category: render_one(link.category, NewsletterPhoenix.CategoryView, "category.json"),
       user_id: link.user_id,
       newsletter_id: link.newsletter_id}
   end

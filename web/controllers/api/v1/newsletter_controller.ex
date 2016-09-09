@@ -7,6 +7,7 @@ defmodule NewsletterPhoenix.NewsletterController do
 
   def index(conn, _params) do
     newsletters = Repo.all(Newsletter)
+                    |> Repo.preload([links: [:category]])
     render(conn, "index.json", newsletters: newsletters)
   end
 

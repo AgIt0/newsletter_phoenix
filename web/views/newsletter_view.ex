@@ -11,6 +11,8 @@ defmodule NewsletterPhoenix.NewsletterView do
 
   def render("newsletter.json", %{newsletter: newsletter}) do
     %{id: newsletter.id,
-      name: newsletter.name}
+      name: newsletter.name,
+      links: render_many(newsletter.links, NewsletterPhoenix.LinkView, "link.json")
+    }
   end
 end

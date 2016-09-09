@@ -3,6 +3,7 @@ defmodule NewsletterPhoenix.Newsletter do
 
   schema "newsletters" do
     field :name, :string
+    has_many :links, NewsletterPhoenix.Link
 
     timestamps()
   end
