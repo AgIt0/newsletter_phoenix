@@ -7,6 +7,10 @@
 # Generated on crash by the VM
 erl_crash.dump
 
+assets/node_modules
+assets/dist
+.DS_Store
+
 # The config/prod.secret.exs file by default contains sensitive
 # data and you should not commit it into version control.
 #
