@@ -6,7 +6,7 @@ export default {
     extensions: ['', '.js', '.jsx']
   },
   debug: true,
-  devtool: 'cheap-module-eval-source-map',
+  devtool: 'source-map',
   noInfo: false,
   entry: [
     'eventsource-polyfill',

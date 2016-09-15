@@ -19,7 +19,7 @@ defmodule NewsletterPhoenix.Mixfile do
   def application do
     [mod: {NewsletterPhoenix, []},
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext,
-                    :phoenix_ecto, :postgrex, :comeonin]]
+                    :phoenix_ecto, :postgrex, :comeonin, :corsica]]
   end
 
   # Specifies which paths to compile per environment.
@@ -39,7 +39,8 @@ defmodule NewsletterPhoenix.Mixfile do
      {:gettext, "~> 0.11"},
      {:comeonin, "~> 2.0"},
      {:guardian, "~> 0.12.0"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:corsica, "~> 0.4"}]
   end
 
   # Aliases are shortcuts or tasks specific to the current project.
