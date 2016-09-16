@@ -6,6 +6,8 @@ import { Provider } from 'react-redux';
 import { Router, browserHistory } from 'react-router';
 import { syncHistoryWithStore } from 'react-router-redux';
 import configRoutes from './routes';
+import './css/styles.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
 const target = document.getElementById('main_container');
 const store = configureStore(browserHistory);

@@ -31,5 +31,5 @@ export default function configRoutes(store) {
         <IndexRoute component={LinkCreationView} />
       </Route>
     </Route>
-  )
-};
+  );
+}
