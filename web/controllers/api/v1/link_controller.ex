@@ -20,7 +20,7 @@ defmodule NewsletterPhoenix.LinkController do
       {:ok, link} ->
         conn
         |> put_status(:created)
-        |> render("show.json", link: Repo.preload(link, :category))
+        |> render("created.json", link: Repo.preload(link, :category))
       {:error, changeset} ->
         conn
         |> put_status(:unprocessable_entity)

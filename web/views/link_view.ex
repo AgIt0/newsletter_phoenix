@@ -9,6 +9,10 @@ defmodule NewsletterPhoenix.LinkView do
     %{data: render_one(link, NewsletterPhoenix.LinkView, "link.json")}
   end
 
+  def render("created.json", _) do
+    %{ok: true}
+  end
+
   def render("user.json", %{link: user}) do
     %{id: user.id,
       first_name: user.first_name,
