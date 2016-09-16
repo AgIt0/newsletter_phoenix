@@ -9,13 +9,20 @@ defmodule NewsletterPhoenix.LinkView do
     %{data: render_one(link, NewsletterPhoenix.LinkView, "link.json")}
   end
 
+  def render("user.json", %{link: user}) do
+    %{id: user.id,
+      first_name: user.first_name,
+      last_name: user.last_name,
+      email: user.email}
+  end
+
   def render("link.json", %{link: link}) do
     %{id: link.id,
       title: link.title,
       url: link.url,
       comment: link.comment,
       category: render_one(link.category, NewsletterPhoenix.CategoryView, "category.json"),
-      user_id: link.user_id,
+      user: render_one(link.user, NewsletterPhoenix.LinkView, "user.json"),
       newsletter_id: link.newsletter_id}
   end
 end
