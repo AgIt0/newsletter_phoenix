@@ -5,14 +5,31 @@ import AuthenticationComponent from './components/authenticated';
 import RegistrationView from './components/registration_view';
 import SessionView from './components/session_view';
 import LinkCreationView from './components/link_creation_view';
+import Actions from './actions/sessions';
 
-export default (
-  <Route component={App}>
-    <Route path="/sign_up" component={RegistrationView} />
-    <Route path="/sign_in" component={SessionView} />
+export default function configRoutes(store) {
+  const ensureAuthenticated = (nextState, replace, callback) => {
+    const { dispatch } = store;
+    const { session } = store.getState();
+    const { currentUser } = session;
 
-    <Route path="/" component={AuthenticationComponent} >
-      <IndexRoute component={LinkCreationView} />
+    if(!currentUser && localStorage.getItem('authToken')) {
+      dispatch(Actions.currentUser());
+    } else if (!localStorage.getItem('authToken')) {
+      replace('/sign_in');
+    }
+
+    callback();
+  };
+
+  return (
+    <Route component={App}>
+      <Route path="/sign_up" component={RegistrationView}/>
+      <Route path="/sign_in" component={SessionView}/>
+
+      <Route path="/" component={AuthenticationComponent} onEnter={ensureAuthenticated}>
+        <IndexRoute component={LinkCreationView} />
+      </Route>
     </Route>
-  </Route>
-);
+  )
+};

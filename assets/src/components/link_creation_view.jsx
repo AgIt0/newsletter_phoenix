@@ -6,7 +6,7 @@ class LinkCreationView extends React.Component {
       <div className="container-fluid">
         <p>LinkCreationView text here...</p>
       </div>
-    )
+    );
   }
 };
 
