@@ -5,6 +5,8 @@ import AuthenticationComponent from './components/authenticated';
 import RegistrationView from './components/registration_view';
 import SessionView from './components/session_view';
 import LinkCreationView from './components/link_creation_view';
+import NewsletterIndexView from './components/newsletter_index_view';
+import NewsletterView from './components/newsletter_view';
 import Actions from './actions/sessions';
 
 export default function configRoutes(store) {
@@ -29,6 +31,8 @@ export default function configRoutes(store) {
 
       <Route path="/" component={AuthenticationComponent} onEnter={ensureAuthenticated}>
         <IndexRoute component={LinkCreationView} />
+        <Route path="/newsletters" component={NewsletterIndexView} />
+        <Route path="/newsletters/:id" component={NewsletterView} />
       </Route>
     </Route>
   );
