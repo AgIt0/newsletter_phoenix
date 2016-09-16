@@ -27,7 +27,7 @@ class AuthenticatedContainer extends React.Component {
           currentUser={currentUser}
           dispatch={dispatch} />
 
-        <div className="main-container">
+        <div className="row-container">
           {this.props.children}
         </div>
       </div>

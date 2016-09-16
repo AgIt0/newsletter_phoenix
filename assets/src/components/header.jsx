@@ -27,9 +27,7 @@ export default class Header extends React.Component {
     }
 
     return (
-      <a href="#" onClick={this.handleSignOutClick.bind(this)}>
-        <i className="fa fa-sign-out"/> Sign out
-      </a>
+      <a rel="nofollow" onClick={this.handleSignOutClick.bind(this)}>Logout</a>
     );
   }
 
@@ -40,28 +38,35 @@ export default class Header extends React.Component {
 
   render() {
     return (
-      <header className="main-header">
-        <nav>
-          <ul>
-            <li>
-              <Link to="/"><i className="fa fa-columns"/> Boards</Link>
-            </li>
-          </ul>
-        </nav>
-        <Link to="/">
-          <span className="logo"/>
-        </Link>
-        <nav className="right">
-          <ul>
-            <li>
-              {this.renderCurrentUser()}
-            </li>
-            <li>
-              {this.renderSignOutLink()}
-            </li>
-          </ul>
-        </nav>
-      </header>
+      <nav className="navbar navbar-default">
+        <div className="container-fluid">
+          <div className="navbar-header">
+            <button aria-expanded="false" className="navbar-toggle collapsed" data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" type="button">
+              <span className="sr-only">Toggle navigation</span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+              <span className="icon-bar"></span>
+            </button>
+            <a className="navbar-brand" href="#">React Newsletter</a>
+          </div>
+
+          <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul className="nav navbar-nav">
+              <li>
+                <a href="/newsletters">Newsletters</a>
+              </li>
+              <li>
+                <a href="/">Submit link</a>
+              </li>
+            </ul>
+            <ul className="nav navbar-nav navbar-right">
+              <li>
+                {this.renderSignOutLink()}
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
     );
   }
 }

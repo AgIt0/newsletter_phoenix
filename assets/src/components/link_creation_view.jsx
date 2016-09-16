@@ -69,28 +69,38 @@ class LinkCreationView extends React.Component {
   render() {
     const { errors } = this.props;
     return (
-      <div className="view-container registrations new">
-        <main>
-          <header>
-            <div className="logo" />
-          </header>
+      <div className="container">
+        <div className="col-xs-4 col-xs-offset-4">
+          <h1>New Link</h1>
           {this.renderSuccess()}
-          <form onSubmit={this.onSubmit.bind(this)}>
-            <div className="field">
-              <input ref="title" type="text" placeholder="Title" required={true} />
+          <form className="new_link" onSubmit={this.onSubmit.bind(this)}>
+            <div className="field form-group">
+              <label htmlFor="title">Title</label>
+              <br />
+              <input className="form-control" ref="title" type="text" placeholder="Title" required={true} />
             </div>
-            <div className="field">
-              <input ref="url" type="text" placeholder="Url" required={true} />
+            <div className="field form-group">
+              <label htmlFor="url">Url</label>
+              <br />
+              <input className="form-control" ref="url" type="text" placeholder="Url" required={true} />
             </div>
-            <div className="field">
-              <input ref="comment" placeholder="" />
+            <div className="field form-group">
+              <label htmlFor="comment">Comment</label>
+              <br />
+              <input className="form-control" ref="comment" placeholder="" />
             </div>
-            <select  ref="category_id" id="link_category_id">
-              {this.renderCategories()}
-            </select>
-            <button type="submit">Create Link</button>
+            <div className="field form-group">
+              <label htmlFor="category_id">Category</label>
+              <br />
+              <select className="form-control" ref="category_id" id="link_category_id">
+                {this.renderCategories()}
+              </select>
+            </div>
+            <div className="actions">
+              <input type="submit" name="commit" value="Create Link" className="form-control"/>
+            </div>
           </form>
-        </main>
+        </div>
       </div>
     )
   }

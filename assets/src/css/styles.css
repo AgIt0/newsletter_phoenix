@@ -1,3 +1,28 @@
-#app {
-  background: 'red';
+#header {
+  background-color: #262626;
+  color: white;
+}
+
+#footer {
+  color: white;
+  font-size: 15px;
+  padding-top: 15px;
+  height: 50px;
+}
+
+body > .container {
+  margin-bottom: 50px;
+}
+
+.newsletter_link {
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
+  margin: 10px 0px;
+  padding: 5px;
+}
+
+.newsletter-listing {
+  border: 1px solid #bfbfbf;
+  border-radius: 5px;
+  margin: 10px 0px !important;
 }
