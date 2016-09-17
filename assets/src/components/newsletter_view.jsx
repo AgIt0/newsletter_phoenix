@@ -7,7 +7,8 @@ class NewsletterView extends React.Component {
     super(props);
 
     this.state = {
-      newsletter: null
+      newsletter: null,
+      filteredBy: null
     };
   }
 
@@ -23,22 +24,36 @@ class NewsletterView extends React.Component {
     });
   }
 
+  updateFilter(category) {
+    this.setState({filteredBy: category});
+  }
+
   renderCategories(newsletter) {
     if(this.state.newsletter == null) {
       return;
     }
 
     let categories = this.state.newsletter.links.map((link) => {
-      return link.category.name
+      return link.category.name;
     });
 
     return [...new Set(categories)].map((category, i) => {
       return(
-        <li key={i} className="active">
+        <li key={i} className="active" onClick={this.updateFilter.bind(this, category)}>
           <a className="category-filter">{category}</a>
         </li>
       );
     });
+  }
+
+  filteredLinks() {
+    if(this.state.filteredBy == null) {
+      return this.state.newsletter.links;
+    } else {
+      return this.state.newsletter.links.filter(
+        link => link.category.name == this.state.filteredBy
+      )
+    }
   }
 
   renderLinks() {
@@ -46,7 +61,7 @@ class NewsletterView extends React.Component {
       return;
     }
 
-    return this.state.newsletter.links.map((link, i) => {
+    return this.filteredLinks().map((link, i) => {
       return (
         <div key={i} className="newsletter_link container">
           <div className="col-xs-10">
