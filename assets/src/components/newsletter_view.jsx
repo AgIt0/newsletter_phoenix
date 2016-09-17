@@ -12,16 +12,33 @@ class NewsletterView extends React.Component {
   }
 
   componentDidMount() {
-    let newsletterUrl = `/api/v1/newsletters/${this.props.params.id}`
-    httpGet(newsletterUrl)
+    httpGet(`/api/v1/newsletters/${this.props.params.id}`)
     .then((data) => {
       this.setState({
         newsletter: data.data
-      })
+      });
     })
     .catch((error) => {
       console.log(error);
-    })
+    });
+  }
+
+  renderCategories(newsletter) {
+    if(this.state.newsletter == null) {
+      return;
+    }
+
+    let categories = this.state.newsletter.links.map((link) => {
+      return link.category.name
+    });
+
+    return [...new Set(categories)].map((category, i) => {
+      return(
+        <li key={i} className="active">
+          <a className="category-filter">{category}</a>
+        </li>
+      );
+    });
   }
 
   renderLinks() {
@@ -55,6 +72,9 @@ class NewsletterView extends React.Component {
         <div className="row">
           <div className="col-xs-12">
             <h1>{this.state.newsletter && this.state.newsletter.name}</h1>
+            <ul className="nav nav-tabs">
+              {this.renderCategories()}
+            </ul>
           </div>
         </div>
 
